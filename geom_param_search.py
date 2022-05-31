@@ -1,12 +1,8 @@
 import numpy as np
 import odl
-import matplotlib.pyplot as plt
-from matplotlib import colors
-from scipy.optimize import minimize
+
 from scipy import optimize
 from PIL import Image
-from scipy import signal
-from pathlib import Path
 import scipy.io
 from datetime import datetime
 import os
@@ -46,7 +42,7 @@ def load_sinogram_data(file_name):
     """
     sino = scipy.io.loadmat(file_name)
     sino = sino['arr']
-    sino[:, CUT:768] = 0
+    sino[:, CUT:DETECTOR_LENGTH_PX] = 0
     return sino
 
 
@@ -147,6 +143,9 @@ def main():
 
     parser.add_argument('--disk-dir', '-d', dest='disk_dir', default="./hole_disk/",
                         help='Path to the calibration phantom (ground truth + simulated X-ray data)')
+
+    parser.add_argument('--id-num', '-i', dest='id',
+                        default=1, type=int, help='Process ID number')
 
     args = parser.parse_args()
     logging.info(f"Directory with the calibration phantom: {args.disk_dir}")
