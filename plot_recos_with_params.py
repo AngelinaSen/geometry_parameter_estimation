@@ -36,7 +36,7 @@ def load_sinogram_data(file_name):
 
 
 def gather_params(in_dir, out_fn):
-    data_files = sorted([file for file in os.listdir(in_dir)])
+    data_files = sorted([file for file in os.listdir(in_dir) if not file.startswith('.')])
     # print(data_files)
     param_matrix = []
     for i in data_files:
@@ -48,6 +48,7 @@ def gather_params(in_dir, out_fn):
     params_save = np.array(param_matrix)
     # print(params_save.shape)
     np.save(out_fn, params_save)
+    logging.info(f"The set of optimal parameters is saved to: {out_fn}")
     return params_save
 
 
@@ -96,8 +97,6 @@ def plot_recos_with_diff_params(params, sinogram, output_img_fn):
     :sinogram: sinogram data from which the reconstructions will be obtained
     :output_img_fn: name of a file where the plot will be saved
     """
-
-
     n_col = 3
     n_row = 2
 
