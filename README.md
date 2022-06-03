@@ -43,3 +43,14 @@ One can get the plot of reconstructions with different parametrizations  by runn
 ```python3 plot_recos_with_params.py -d "./<calibration_phantom_name>/"```
 
 ## Geometry parameter estimation based on intersection points 
+
+... TO DO ...
+
+## Reconstructions from sparse X-ray data 
+
+To obtain reconstructions using three diffrent methods (filtered backprojection, Tikhonov regularisation, and Bayesian inversion with edge-
+preserving Cauchy priors) for various number of projection angles (360, 180, 90, 45, 20), one should run 
+
+```python3 get_reconstructions.py```
+
+Since the script ```get_reconstructions.py``` invokes the Julia script ```theorymatrix.jl```,  one should have Julia (and required packeges) installed first. To install the packages after installing Julia, one can run ```julia theorymatrix.jl``` in the terminal and when it complains about missing packages, run Julia in another terminal and use ```Pkg.install("<missing_package_name>")```. When all the packages are installed, one can run ```exit()``` to quit the virtual session.
