@@ -1,6 +1,25 @@
-# Geometry paper
+# Geometry Parameter Estimation for Sparse X-ray Log Imaging
 ## General information
-The repository contains data and codes complimentary to the paper on geometry estimation for fan-beam X-ray sawmill imaging. The folder containes synthetic data for two callibration phantoms: L-shaped calibration phantom (```./L_disk/```) and calibration phantom with a hole (```./hole_disk/```).
+The repository contains scripts for geometry parameter estimation 
+and reconstruction in fan-beam X-ray tomography in aplication to sawmill log imaging:
+* `geom_param_search.py` - script for obtaining optimal geometry parameters, 
+where we calculate the maximum cross-correlation between a known-sized calibration object image 
+and its filtered backprojection reconstruction, 
+and use differential evolution as an optimiser;
+* `param_search_runner.sh` - wraper script for running `geom_param_search.py` jobs in parallel 
+to get different parametrisations (different sets of parameters);
+* `plot_recos_with_params.py` - script to obtain filtered backprojection reconstructions with different parametrisations
+and plot them in one figure for comparison;
+* `get_reconstructions.py` -  script to obtain reconstructions with given parametrisation by three different methods 
+(filtered backprojection, Tikhonov regularisation and Bayesian inversion with edge-preserving Cauchy priors) 
+for various number of projection angles;
+* `theorymatrix.jl` - Julia script used in `get_reconstructions.py` to implement Bayesian inversion with edge-preserving Cauchy priors.
+
+For illustration purpose, we provide synthetic data: 
+* two callibration phantoms used for geometry parameter estimation:
+  - L-shaped calibration phantom (```./L_disk/```);
+  - calibration phantom with a hole (```./hole_disk/```);
+* synthetic X-ray data of a cross-sectional phantom of a log used for testing (```phantom_sino.mat```). 
 
 ## Installation
 The codes use the Operator Discretization Library (ODL), please see the installation guide: https://odlgroup.github.io/odl/getting_started/installing_source.html
