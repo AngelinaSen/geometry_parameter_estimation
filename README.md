@@ -22,7 +22,17 @@ For illustration purpose, we provide synthetic data:
 * synthetic X-ray data of a cross-sectional phantom of a log used for testing (```phantom_sino.mat```). 
 
 ## Installation
-The codes use the Operator Discretization Library (ODL), please see the installation guide: https://odlgroup.github.io/odl/getting_started/installing_source.html
+The scripts use the Conda environment and the Operator Discretization Library (ODL).
+You can use the installation guide from the ODL documentation:
+https://odlgroup.github.io/odl/getting_started/installing_source.html
+
+Alternatively, you can run the following command 
+
+```shell
+conda create --name odl-py3.6 --file freezed-requirements.txt
+```
+
+The command should create the Conda environment  with name `odl-py3.6` and install all the required  dependencies.
 
 ## Geometry parameter estimation with calibration phantoms 
 
