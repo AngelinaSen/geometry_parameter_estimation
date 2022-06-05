@@ -34,13 +34,21 @@ conda create --name odl-py3.6 --file freezed-requirements.txt
 
 The command should create the Conda environment  with name `odl-py3.6` and install all the required  dependencies.
 
+To activate the Conda environment, you should run 
+
+```shell
+conda activate odl-py3.6
+```
+
 ## Geometry parameter estimation with calibration phantoms 
 
 ### Run one parameter search program 
 
 To estimate geometry parameters, one should run 
 
-```python3 geom_param_search.py -d "./<calibration_phantom_name>/"```
+```shell
+python3 geom_param_search.py -d "./<calibration_phantom_name>/"
+```
 
 where after option ```-d``` one should specify the folder with calibration phantom data. For example, in the current repository, two options are available:
 
@@ -54,7 +62,7 @@ to use calibratiom phantom with a hole.
 
 The result parameter vector will be saved as a numpy file to directory ```./<calibration_phantom_name>/params/```
 
-### Run several parameter search programs simultaniously 
+### Run several parameter search programs simultaneously 
 
 There is a simple Bash-script in the repository that one can use to run N programs ```geom_param_search.py``` simultaniously.
 For example, to execute 6 programs on geometry parameter search using the calibration phantom <calibration_phantom_name>, one should run
@@ -63,9 +71,8 @@ For example, to execute 6 programs on geometry parameter search using the calibr
 
 The output parameters will be saved to directory: ```./<calibration_phantom_name>/params/```
 
-### Plot reconstructions with different parametrisation 
-
-Aftre running at least 6 programs and getting 6 different parametrizations, one can plot them to compare. 
+### Plot reconstructions with different parametrisation
+After running at least 6 programs (see [section](#run-several-parameter-search-programs-simultaneously)) and getting 6 different parametrizations, one can plot them to compare. 
 
 One can get the plot of reconstructions with different parametrizations  by running
 
