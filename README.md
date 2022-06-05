@@ -44,39 +44,53 @@ conda activate odl-py3.6
 
 ### Run one parameter search program 
 
-To estimate geometry parameters, one should run 
+To estimate geometry parameters, you should run 
 
 ```shell
 python3 geom_param_search.py -d "./<calibration_phantom_name>/"
 ```
 
-where after option ```-d``` one should specify the folder with calibration phantom data. For example, in the current repository, two options are available:
+where you should specify the folder with calibration phantom data 
+after the option `-d`. 
+In the current repository, two options are available. 
+For example, to perform parameter search based on L-shaped calibration disk,
+you should run  
 
-```python3 geom_param_search.py -d "./L_disk/"```
+```shell
+python3 geom_param_search.py -d "./L_disk/"
+```
 
-to perform parameter search based on L-shaped calibration disk, or alternatively 
+Alternatively, to use the calibration phantom with a hole, you should run
 
-```python3 geom_param_search.py -d "./hole_disk/"```
+```shell 
+python3 geom_param_search.py -d "./hole_disk/"
+```
 
-to use calibratiom phantom with a hole. 
 
-The result parameter vector will be saved as a numpy file to directory ```./<calibration_phantom_name>/params/```
+The result parameter vector will be saved as a numpy file to directory `./<calibration_phantom_name>/params/`.
 
 ### Run several parameter search programs simultaneously 
 
-There is a simple Bash-script in the repository that one can use to run N programs ```geom_param_search.py``` simultaniously.
-For example, to execute 6 programs on geometry parameter search using the calibration phantom <calibration_phantom_name>, one should run
+There is a simple Bash-script in the repository 
+which you can use to run `N` programs `geom_param_search.py` simultaneously.
+For example, to execute 6 programs on geometry parameter search 
+using the calibration phantom <calibration_phantom_name>, you should run
 
-```bash param_search_runner.sh 6 "./<calibration_phantom_name>/"```
+```bash
+bash param_search_runner.sh 6 "./<calibration_phantom_name>/"
+```
 
-The output parameters will be saved to directory: ```./<calibration_phantom_name>/params/```
+The output parameters will be saved to directory `./<calibration_phantom_name>/params/`.
 
 ### Plot reconstructions with different parametrisation
-After running at least 6 programs (see [section](#run-several-parameter-search-programs-simultaneously)) and getting 6 different parametrizations, one can plot them to compare. 
+After running at least 6 programs (see [section](#run-several-parameter-search-programs-simultaneously)) 
+and getting 6 different parametrisations, 
+you can get the filtered backprojections with those  parametrisations 
+and plot them in one figure to compare by running
 
-One can get the plot of reconstructions with different parametrizations  by running
-
-```python3 plot_recos_with_params.py -d "./<calibration_phantom_name>/"```
+```shell
+python3 plot_recos_with_params.py -d "./<calibration_phantom_name>/"
+```
 
 ## Geometry parameter estimation based on intersection points 
 
@@ -84,9 +98,35 @@ One can get the plot of reconstructions with different parametrizations  by runn
 
 ## Reconstructions from sparse X-ray data 
 
-To obtain reconstructions using three diffrent methods (filtered backprojection, Tikhonov regularisation, and Bayesian inversion with edge-
-preserving Cauchy priors) for various number of projection angles (360, 180, 90, 45, 20), one should run 
+To obtain reconstructions using three different methods 
+(filtered backprojection, Tikhonov regularisation, 
+and Bayesian inversion with edge-preserving Cauchy priors) 
+for various number of projection angles (360, 180, 90, 45, 20), 
+you should run 
 
-```python3 get_reconstructions.py```
+```shell
+python3 get_reconstructions.py
+```
 
-Since the script ```get_reconstructions.py``` invokes the Julia script ```theorymatrix.jl```,  one should have Julia (and required packeges) installed first. To install the packages after installing Julia, one can run ```julia theorymatrix.jl``` in the terminal and when it complains about missing packages, run Julia in another terminal and use ```Pkg.install("<missing_package_name>")```. When all the packages are installed, one can run ```exit()``` to quit the virtual session.
+Since the script `get_reconstructions.py` invokes the Julia script `theorymatrix.jl`,
+you should get Julia (and required packages) installed first.
+
+After installing Julia, you can install the required packages 
+```
+"ArgParse"
+"MAT" 
+"Optim"
+"ProgressBars"
+"RegionTrees" 
+"StaticArrays"
+"VectorizedRoutines" 
+```
+by running 
+
+```shell
+julia
+using Pkg
+Pkg.install("<package_name>")
+```
+
+When all the packages are installed, one can run ```exit()``` to quit the virtual session.
