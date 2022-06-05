@@ -1,5 +1,5 @@
 # This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
+# $ `conda create --name <env> --file <this file>`
 # platform: osx-64
 astra-toolbox=1.8.3=py36hb466ac3_0
 attrs=21.2.0=pyhd3eb1b0_0
