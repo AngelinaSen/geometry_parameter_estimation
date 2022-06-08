@@ -39,8 +39,11 @@ def load_sinogram_data(file_name: str) -> np.ndarray:
 
 
 def gather_params(in_dir: str, out_fn: str) -> np.ndarray:
-    """
-    FIXME:
+    """ Function to gather parameter sets from all the files in the directory
+    to one numpy array
+    :param in_dir: input directory containing files with different parametrisations
+    :param out_fn: name of the file to save the output array of parameters
+    :return params_save: array  of parameters (different parametrisations together)
     """
     data_files = sorted([file for file in os.listdir(in_dir) if not file.startswith(".")])
     # print(data_files)
