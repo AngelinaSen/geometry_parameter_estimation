@@ -95,7 +95,20 @@ python3 plot_recos_with_params.py -d "./<calibration_phantom_name>/"
 
 ## Geometry parameter estimation based on intersection points 
 
-... TO DO ...
+The Julia script `param_sample_intersections.jl` estimates the geometry parameters of by using only a set of given R^2 points and their projections at a virtual infinite long detector plate at different virtual X-ray device rotation angles as the input data in a Gaussian likelihood function. The script uses an adaptive SMC sampler with MCMC rejuvenation to estimate the parameter distributions. The script can be set to estimate 4-6 geometry parameters. The function _test_without_src_radius_ estimates the source shift, detector tilt, detector radius, detector shift and additionally the initial rotation angle of the virtual X-ray device. The function _test_all_ estimates also the source radius. The script depends on the following Julia packages:
+```
+"LinearAlgebra"
+"StaticArrays"
+"Random"
+"ProgressBars"
+"Optim"
+"StatsBase"
+"Statistics"
+"Roots"
+"Dates"
+"MAT"
+```
+The SMC sampler function is _smc_sample_ and it returns the particles themselves, their weights, the temperature schedule and the effective sample size history. It is recommended to run the script in a REPL session, since the SMC sampler results can be investigated easily in that way (plotting, calculating sample statistics, etc.). 
 
 ## Reconstructions from sparse X-ray data 
 
