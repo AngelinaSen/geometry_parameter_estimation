@@ -1,6 +1,5 @@
 using LinearAlgebra
 using StaticArrays
-using PyPlot
 using Random
 using ProgressBars
 using Optim
@@ -297,8 +296,7 @@ function smc_sample(log_pdf,N,lowb,upb;K=100,NMCMC=20)
 
         end
 
-        # q = range(0,1e-7,1000)
-        # plot(q,f.(q))
+
         Tnew = nothing
         try
             Tnew = find_zero(f,(0,1.0), Bisection(),rtol=1e-14,abstol=1e-14)
