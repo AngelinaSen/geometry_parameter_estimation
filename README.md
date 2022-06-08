@@ -16,6 +16,7 @@ for various number of projection angles;
 * `theorymatrix.jl` - Julia script used in `get_reconstructions.py` to implement Bayesian inversion with edge-preserving Cauchy priors.
 
 For illustration purpose, we provide synthetic data: 
+![](images/Fig_1.jpg)
 * two callibration phantoms used for geometry parameter estimation:
   - L-shaped calibration phantom (```./L_disk/```);
   - calibration phantom with a hole (```./hole_disk/```);
