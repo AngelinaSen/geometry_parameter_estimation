@@ -42,24 +42,13 @@ N_COL = 3
 
 CUT = 500
 
-LOG_PHANTOM_FN = "./log_phantom/phantom_sino.mat"
-
-
-def load_sinogram_data(file_name: str) -> np.ndarray:
-    """ Function to load the sinogram data
-    :param file_name: name of the file containing sinogram
-    :return calibration_disk: matrix containing the sinogram data
-    """
-    sino = scipy.io.loadmat(file_name)
-    sino = sino["arr"]
-    sino[:, CUT:DETECTOR_LENGTH_PX] = 0
-    return sino
+LOG_PHANTOM_FN = "./log_phantom/phantom_sinogram_noise_2.npy"
 
 
 def extract_angles_from_sino(sino: np.ndarray, angle_num: int) -> np.ndarray:
-    """ Extracts projection data from the full-angle sinogram
+    """
+    Extracts projection data from the full-angle sinogram
     for a given number of evenly located projection angles
-
     :param sino: sinogram
     :param angle_num: number of projection angles
     :return: sinogram containing data for given angles only
@@ -75,7 +64,8 @@ def ray_transform(
     start_angle: float,
     end_angle: int
 ) -> odl.tomo.RayTransform:
-    """ Forward operator
+    """
+    Forward operator
     :param half_side: half-side of the space discretization domain
     :param n_discr: number of elements in space discretization
     :param n_angles: number of angles for the angle discretization
@@ -104,8 +94,8 @@ def ray_transform(
 
 
 def get_fbp_reco(sino: np.ndarray, ray_transf: odl.tomo.RayTransform) -> np.ndarray:
-    """ Computes FBP-reconstruction.
-
+    """
+    Computes FBP-reconstruction.
     :param sino: sinogram
     :param ray_transf: forward operator
     :return: FBP-reconstruction
@@ -144,8 +134,8 @@ def get_isocauchy_reco(
     ang: int,
     use_julia_matrix: bool = False
 ) -> np.ndarray:
-    """ Computes MAP estimates with Cauchy priors
-
+    """
+    Computes MAP estimates with Cauchy priors
     :param sino: sinogram
     :param ray_operator: forward operator
     :param ang: number of projection angles
@@ -224,7 +214,8 @@ def get_isocauchy_reco(
 
 
 def plot_set_of_recos(sinogram_data: np.ndarray, out_fn: str) -> None:
-    """ Plots different types of reconstructions (FBP, Tikhonov, MAP estimates with Cauchy prior)
+    """
+    Plots different types of reconstructions (FBP, Tikhonov, MAP estimates with Cauchy prior)
     for different number of projection angles
     :param sinogram_data: the sinogram data (full-angle)
     :param out_fn: name  of  a file to save the plot
@@ -295,7 +286,8 @@ def plot_set_of_recos(sinogram_data: np.ndarray, out_fn: str) -> None:
 
 
 def create_system_matrix(ray_op: odl.tomo.RayTransform, n_discr: int) -> scipy.sparse.csr_matrix:
-    """ Plots different types of reconstructions (FBP, Tikhonov, MAP estimates with Cauchy prior)
+    """
+    Plots different types of reconstructions (FBP, Tikhonov, MAP estimates with Cauchy prior)
     for different number of projection angles
     :param ray_op: forward operator
     :param n_discr: number of elements in the discretization
@@ -313,7 +305,7 @@ def main():
         format="%(asctime)s - %(levelname)s - %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO
     )
 
-    log_sino = load_sinogram_data(LOG_PHANTOM_FN)  # sinogram of a log phantom
+    log_sino = np.load(LOG_PHANTOM_FN)  # sinogram of the log phantom
 
     # Get FBP, Tikhonov, MAP with Cauchy reconstructions and plot them
     plot_set_of_recos(log_sino, "reconstructions.png")
