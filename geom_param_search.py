@@ -144,10 +144,10 @@ def main():
     )
 
     parser.add_argument('--n-proj', '-p', dest='n_proj',
-                        choices=[360, 180, 90, 45, 20], default=20, type=int,
+                        choices=[360, 180, 90, 45, 20], default=360, type=int,
                         help='Number of projection angles used in the geometry parameter search')
 
-    parser.add_argument('--n-runs', '-n', dest='n_runs', default=5, type=int,
+    parser.add_argument('--n-runs', '-n', dest='n_runs', default=1, type=int,
                         help='Number of optimal parameter vectors to obtain (= number of program runs)',)
 
     args = parser.parse_args()
