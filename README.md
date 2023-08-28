@@ -16,8 +16,8 @@ for various number of projection angles;
 For geometry parameter search and reconstruction, we provide synthetic data: 
 ![](images/Fig_1.png)
 * images of two calibration phantoms used for geometry parameter estimation:
-  - calibration phantom with a hole (```./hole_disk/```);
   - L-shaped calibration phantom (```./L_disk/```);
+  - calibration phantom with a hole (```./hole_disk/```);
 * image of log phantom (```log_phantom/phantom_true_256.mat```) 
 and its synthetic full-angle X-ray measurements used for testing (```log_phantom/phantom_sinogram_noise_2.npy```). 
 
